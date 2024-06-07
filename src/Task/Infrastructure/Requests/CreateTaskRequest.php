@@ -18,7 +18,7 @@ class CreateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'task_title'       => 'required|string',
+            'task_title'       => 'required|string|max:50',
             'task_description' => 'required|string',
         ];
     }

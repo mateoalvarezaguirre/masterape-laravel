@@ -47,7 +47,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 @if(empty($tasks))
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Ups! We didn't find any task, create a new one here!") }}
+                        {{ __("Ups! We couldn't find any task, create a new one here!") }}
                     </div>
                 @else
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -66,8 +66,8 @@
                                         <td class="w-1/12 px-4 py-2 text-center">{{ $task->id }}</td>
                                         <td class="w-8/12 px-4 py-2 text-center">{{ $task->title }}</td>
                                         <td class="w-8/12 px-4 py-2 text-center">
-                                            <x-status-tag :color="$task->is_done ? 'green' : 'yellow'">
-                                                {{ $task->is_done ? 'Done' : 'Pending' }}
+                                            <x-status-tag :status="$task->is_done ? 'success' : 'warning'">
+                                                {{ $task->is_done ? 'Done' : 'Pending'}}
                                             </x-status-tag>
                                         </td>
                                         <td class="w-3/12 px-4 py-2 text-center">

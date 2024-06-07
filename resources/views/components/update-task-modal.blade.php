@@ -16,7 +16,7 @@
             <x-text-input id="task_title" name="task_title" type="text" class="mt-1 block w-full" required
             value="{{old('task_title', $task->title)}}"
             />
-            <x-input-error :messages="$errors->createTask->get('task_title')" class="mt-2" />
+            <x-input-error :messages="$errors->updateTask->get('task_title')" class="mt-2" />
         </div>
 
         <div class="my-3">
@@ -24,7 +24,7 @@
             <x-textarea-input id="task_description" name="task_description" type="text" class="mt-1 block w-full" required>
                 {{old('task_description', $task->description)}}
             </x-textarea-input>
-            <x-input-error :messages="$errors->createTask->get('task_description')" class="mt-2" />
+            <x-input-error :messages="$errors->updateTask->get('task_description')" class="mt-2" />
         </div>
 
         <div class="my-3">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="mt-6 flex justify-end">
-            <x-secondary-button x-on:click="$dispatch('close')">
+            <x-secondary-button x-on:click="$dispatch('close', 'resetForm')">
                 {{ __('Cancel') }}
             </x-secondary-button>
 
