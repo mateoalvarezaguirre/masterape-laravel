@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Src\Task\Infrastructure\Controllers\TaskController;
 
-Route::get('/', fn () => Redirect::route('dashboard'));
+Route::get('/', fn () => view('home'))->name('home');
 
 Route::get('/dashboard', fn () => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -21,3 +21,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/contexts/books/books.php';

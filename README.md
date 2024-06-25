@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This is a task manager project made as a web application built with Laravel.
+This is a fictional online bookstore. Created for educational purposes for the Web Production course at Escuela DaVinci.
 
 ## Features
 

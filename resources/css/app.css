@@ -3,3 +3,26 @@
 @tailwind utilities;
 
 [x-cloak] { display: none !important; }
+
+@layer base {
+    :root {
+        --custom-light: #EAD2AC;
+        --custom-dark: #1e1e1e;
+        --custom-rose: #946e82;
+    }
+}
+
+
+@layer utilities {
+    .bg-custom-light {
+        background-color: var(--custom-light);
+    }
+
+    .bg-custom-dark {
+        background-color: var(--custom-dark);
+    }
+
+    .text-rose {
+        color: var(--custom-rose);
+    }
+}

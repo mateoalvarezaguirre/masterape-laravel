@@ -1,0 +1,95 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Books') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session('status') === 'book-created')
+                <div
+                    x-data="{ show: true }"
+                    x-show="show"
+                    x-transition
+                    x-init="setTimeout(() => show = false, 5000)"
+                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    {{__('Book created successfully!')}}
+                </div>
+            @endif
+            @if (session('status') === 'book-updated')
+                <div
+                    x-data="{ show: true }"
+                    x-show="show"
+                    x-transition
+                    x-init="setTimeout(() => show = false, 5000)"
+                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    {{__('Book updated successfully!')}}
+                </div>
+            @endif
+            @if (session('status') === 'book-deleted')
+                <div
+                    x-data="{ show: true }"
+                    x-show="show"
+                    x-transition
+                    x-init="setTimeout(() => show = false, 5000)"
+                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+                    role="alert">
+                    {{__('Book deleted successfully!')}}
+                </div>
+            @endif
+            <div class="py-6 flex justify-end items-center gap-4">
+                <a href="{{route('books.new')}}">
+                    <x-primary-button>{{ __('Create new book') }}</x-primary-button>
+                </a>
+            </div>
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                @if(empty($books))
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        {{ __("Ups! We couldn't find any book, create a new one here!") }}
+                    </div>
+                @else
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <table class="table-auto w-full">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($books as $book)
+                                <tr>
+                                    <td class="w-1/12 px-4 py-2 text-center">{{ $book->id }}</td>
+                                    <td class="w-8/12 px-4 py-2 text-center">{{ $book->title }}</td>
+                                    <td class="w-3/12 px-4 py-2 text-center">
+                                        <div class="flex gap-6 justify-center">
+                                            <a href="{{route('books.edit', $book->id)}}">
+                                                <x-secondary-button>
+                                                    Edit
+                                                </x-secondary-button>
+                                            </a>
+                                            <x-danger-button
+                                                x-data=""
+                                                x-on:click.prevent="$dispatch('open-modal', 'confirm-book-deletion-{{$book->id}}')">
+                                                Delete
+                                            </x-danger-button>
+                                            <x-confirm-book-deletion-modal :bookId="$book->id"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-6">
+                        {{ $pagination->links() }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+</x-app-layout>
