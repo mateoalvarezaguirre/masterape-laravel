@@ -9,6 +9,11 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                        {{ __('About us') }}
+                    </x-nav-link>
+                </div>
 
                 <!-- Navigation Links -->
                 @auth
@@ -28,12 +33,18 @@
                                 {{ __('Books') }}
                             </x-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('purchases.dashboard')" :active="request()->routeIs('purchases.dashboard')">
+                                {{ __('Purchases') }}
+                            </x-nav-link>
+                        </div>
                     @endif
                 @endauth
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <x-cart />
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-theme-toggle />
                 </div>
@@ -56,6 +67,9 @@
                         @auth
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('purchases.index')">
+                                {{ __('Your purchases') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -120,6 +134,9 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('purchases.index')">
+                    {{ __('Your purchases') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

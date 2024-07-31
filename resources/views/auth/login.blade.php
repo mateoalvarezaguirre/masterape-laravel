@@ -10,7 +10,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <div class="py-12">
+    <div class="py-12 min-h-[70vh]">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between">
             <div class="hidden sm:flex sm:items-center w-1/2">
                 <div id="login_animation"></div>
@@ -49,6 +49,9 @@
                 </div>--}}
 
                 <div class="flex items-center justify-end mt-4">
+                    <a class="underline text-sm text-gray-400 dark:text-gray-600 hover:text-gray-100 dark:hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                        {{ __('Not registered?') }}
+                    </a>
                     {{--@if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}

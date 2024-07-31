@@ -4,6 +4,8 @@ namespace Src\Book\Domain\Repositories;
 
 use Src\Book\Domain\Entities\BookEntity;
 use Src\Book\Domain\Entities\Lists\BookList;
+use Src\Cart\Domain\ValueObjects\List\CartBookList;
+use Src\Shared\ValueObjects\Cart;
 
 interface BookRepository
 {
@@ -16,4 +18,6 @@ interface BookRepository
     public function findById(int $id): ?BookEntity;
 
     public function getAll(int $page, int $limit): ?BookList;
+
+    public function getCartBookList(Cart $cart): CartBookList;
 }

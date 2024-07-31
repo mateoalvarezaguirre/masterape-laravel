@@ -127,4 +127,19 @@ readonly class BookController
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    /**
+     * @throws BookNotFoundException
+     */
+    public function detail(int $bookId): View
+    {
+        $useCase = new FindBookUseCase(
+            new FindBookDTO($bookId),
+            $this->repository
+        );
+
+        return view('books.detail', [
+            'book' => (object) $useCase()->toArray(),
+        ]);
+    }
 }

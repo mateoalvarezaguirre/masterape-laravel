@@ -6,6 +6,8 @@ use App\Models\Book;
 use Illuminate\Database\Eloquent\Collection;
 use Src\Book\Domain\Entities\BookEntity;
 use Src\Book\Domain\Entities\Lists\BookList;
+use Src\Cart\Domain\ValueObjects\CartBook;
+use Src\Cart\Domain\ValueObjects\List\CartBookList;
 use Src\Shared\ValueObjects\Pagination;
 
 abstract class BookMapper
@@ -41,5 +43,30 @@ abstract class BookMapper
         $bookEntity->setId($book->id);
 
         return $bookEntity;
+    }
+
+    /**
+     * @param Collection<Book> $books
+     * @return CartBookList
+     */
+    public static function fromCollectionToCartBookList(Collection $books): CartBookList
+    {
+        $cartBookList = new CartBookList();
+
+        foreach ($books as $book) {
+            $cartBookList->add(self::fromModelToCartBook($book));
+        }
+
+        return $cartBookList;
+    }
+
+    public static function fromModelToCartBook(Book $book): CartBook
+    {
+        return new CartBook(
+            $book->id,
+            $book->title,
+            $book->cover_image_path,
+            $book->price
+        );
     }
 }

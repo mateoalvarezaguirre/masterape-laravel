@@ -1,0 +1,58 @@
+nav {
+    box-shadow: 0 3px 20px var(--custom-dark);
+}
+
+.book_details_container {
+    min-height: 80vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 0 25px;
+}
+
+.hero_image {
+    object-fit: cover;
+    object-position: bottom;
+    max-width: unset;
+    z-index: 0;
+}
+
+.cover_image {
+    width: 260px;
+    height: 411px;
+    border-radius: 10px;
+}
+
+.book_detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    gap: 25px;
+    margin-top: 250px;
+}
+
+.book_detail_text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.author_name {
+    font-weight: 600;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 900px) {
+    .book_detail {
+        margin-top: 75px;
+        flex-direction: column;
+    }
+
+    .actions {
+        justify-content: space-between;
+    }
+}

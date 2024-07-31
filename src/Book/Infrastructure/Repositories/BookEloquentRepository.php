@@ -9,6 +9,8 @@ use Src\Book\Domain\Entities\Lists\BookList;
 use Src\Book\Domain\Exceptions\FailToDeleteBook;
 use Src\Book\Domain\Repositories\BookRepository;
 use Src\Book\Infrastructure\Mappers\BookMapper;
+use Src\Cart\Domain\ValueObjects\List\CartBookList;
+use Src\Shared\ValueObjects\Cart;
 use Src\Shared\ValueObjects\Pagination;
 
 class BookEloquentRepository implements BookRepository
@@ -104,8 +106,8 @@ class BookEloquentRepository implements BookRepository
                     $books->perPage(),
                     $books->currentPage(),
                     $books->lastPage(),
-                    $books->firstItem(),
-                    $books->lastItem()
+                    $books->firstItem() === null ? 0 : $books->firstItem(),
+                    $books->lastItem()  === null ? 0 : $books->lastItem()
                 )
             );
 
@@ -114,6 +116,20 @@ class BookEloquentRepository implements BookRepository
             Log::error($e);
 
             return null;
+        }
+    }
+
+    public function getCartBookList(Cart $cart): CartBookList
+    {
+        try {
+            $books = Book::whereIn('id', $cart->getList())->get();
+
+            return BookMapper::fromCollectionToCartBookList($books);
+
+        } catch (\Exception $e) {
+            Log::error($e);
+
+            return new CartBookList();
         }
     }
 }

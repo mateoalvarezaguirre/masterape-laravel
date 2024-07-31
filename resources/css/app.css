@@ -9,13 +9,15 @@
         --custom-light: #EAD2AC;
         --custom-dark: #1e1e1e;
         --custom-rose: #946e82;
+        --card-light: #f4f4f4;
+        scroll-behavior: smooth;
     }
 }
 
 
 @layer utilities {
     .bg-custom-light {
-        background-color: var(--custom-light);
+        background-color: #f4f4f4;
     }
 
     .bg-custom-dark {
@@ -24,5 +26,37 @@
 
     .text-rose {
         color: var(--custom-rose);
+    }
+
+    .glass-box {
+        background: rgba( 255, 255, 255, 0.1 );
+        box-shadow: 0 8px 32px 0 rgba( 148, 110, 130, 0.37 );
+        backdrop-filter: blur( 15px );
+        -webkit-backdrop-filter: blur( 7px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        height: fit-content;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .font-sacramento {
+        font-family: 'Sacramento', 'Roboto', sans-serif;
+    }
+}
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: unset;
     }
 }

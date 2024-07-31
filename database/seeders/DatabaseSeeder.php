@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(AuthorSeeder::class);
         $this->call(BookSeeder::class);
+        $this->call(PurchaseStatusSeeder::class);
 
         User::factory()->create([
             'name'    => 'Admin User',

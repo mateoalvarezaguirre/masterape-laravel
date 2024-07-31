@@ -10,7 +10,7 @@ use Src\Book\Domain\Repositories\BookRepository;
 readonly class GetAllBooksUseCase
 {
 
-    private const BOOKS_PER_PAGE = 5;
+    private const BOOKS_PER_PAGE = 6;
 
     public function __construct(
         private GetAllBooksDTO $dto,

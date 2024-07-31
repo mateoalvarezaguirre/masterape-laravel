@@ -20,6 +20,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('css')
         @stack('scripts')
     </head>
     <body x-cloak x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode === true }" class="font-sans antialiased">
@@ -36,7 +37,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main class="">
+            <main class="min-h-[60vh]">
                 {{ $slot }}
             </main>
             @include('layouts.footer')
